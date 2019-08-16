@@ -7,9 +7,9 @@ import { LOAD_ABORT } from '../reducers';
 const Village = ({ members, onFire }) => {
   return (
     <div className={onFire ? 'fire' : ''}>
-      {members.map(({name, age, height}) => (
+      {members.length ? members.map(({name, age, height}) => (
         <p>{name}: {age}yo {height}cm</p>
-      ))}
+      )) : <p>not loaded</p>}
     </div>
   );
 };
