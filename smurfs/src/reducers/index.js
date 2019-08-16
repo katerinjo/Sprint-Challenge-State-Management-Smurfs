@@ -19,6 +19,19 @@ const initState = {
 
 export default (state = initState, action) => {
   switch(action.type) {
+    case LOAD_VILLAGE:
+      return {...state, status: LOADING};
+    case LOAD_SUCCESS:
+      alert(LOAD_SUCCESS)
+      return {
+        village: state.village + action.payload,
+        status: STATIC
+      };
+    case LOAD_FAIL:
+      return {
+        ...state,
+        status: LOAD_ABORT
+      };
     default:
       return state;
   }
