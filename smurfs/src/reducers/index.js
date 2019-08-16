@@ -18,12 +18,21 @@ const initState = {
 };
 
 export default (state = initState, action) => {
+  console.log(action)
   switch(action.type) {
+    case ADD_SMURF:
+      return {
+        ...state,
+        status: ADDING
+      };
+    case ADD_FAIL:
+      return {
+        ...state,
+        status: ADD_ABORT
+      };
     case LOAD_VILLAGE:
-      alert(LOAD_VILLAGE)
       return {...state, status: LOADING};
     case LOAD_SUCCESS:
-      alert(LOAD_SUCCESS)
       return {
         village: action.payload,
         status: STATIC

@@ -2,9 +2,9 @@ import React from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 
-const Basic = ({ touched, errors }) => {
+const Basic = ({ touched, errors, onFire }) => {
   return (
-    <Form>
+    <Form className={onFire ? 'fire' : ''}>
       <div>
         <Field type='text' name='name' placeholder='name' />
         {touched.name && errors.name && <p>{errors.name}</p>}
@@ -28,7 +28,8 @@ export default withFormik({
       name: '',
       age: '',
       height: '',
-      subFun: props.subFun
+      subFun: props.subFun,
+      onFire: props.onFire
     };
   },
 
@@ -47,8 +48,7 @@ export default withFormik({
   }),
 
   handleSubmit(vals, { resetForm }) {
-    // vals.subFun({name: vals.name, age: vals.age, height: vals.height});
-    console.log(vals)
+    vals.subFun({name: vals.name, age: vals.age, height: vals.height});
     resetForm();
   }
 })(Basic);

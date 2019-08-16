@@ -6,7 +6,8 @@ import SmurfForm from './SmurfForm';
 
 import { connect } from 'react-redux';
 
-import { loadVillage } from '../actions';
+import { loadVillage, addSmurf } from '../actions';
+import { ADD_FAIL } from '../reducers';
 
 class App extends Component {
   constructor(props) {
@@ -19,11 +20,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SmurfForm />
+        <SmurfForm subFun={this.props.addSmurf} onFire={this.props.formFire} />
         <Village />
       </div>
     );
   }
 }
 
-export default connect(null, { loadVillage })(App)
+const mapStateToProps = state => {
+  return {
+    formFire: state.status === ADD_FAIL
+  };
+};
+
+export default connect(null, { loadVillage, addSmurf })(App)
