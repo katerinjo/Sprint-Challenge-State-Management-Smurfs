@@ -1,16 +1,36 @@
 import React, { Component } from "react";
 import "./App.css";
+
+import Village from './Village';
+import SmurfForm from './SmurfForm';
+
+import { connect } from 'react-redux';
+
+import { loadVillage, addSmurf } from '../actions';
+import { ADD_ABORT } from '../reducers';
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.load = props.loadVillage;
+  }
+  componentDidMount() {
+    this.load();
+  }
   render() {
     return (
       <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your state management version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
+        <SmurfForm subFun={this.props.addSmurf} onFire={this.props.formFire} />
+        <Village />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    formFire: state.status === ADD_ABORT
+  };
+};
+
+export default connect(mapStateToProps, { loadVillage, addSmurf })(App)
