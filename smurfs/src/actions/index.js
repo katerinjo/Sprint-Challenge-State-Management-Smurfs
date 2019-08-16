@@ -1,4 +1,5 @@
 import { LOAD_VILLAGE, LOAD_SUCCESS, LOAD_FAIL } from '../reducers';
+import axios from 'axios';
 
 export const doSomething = () => {
   return {
@@ -9,5 +10,13 @@ export const doSomething = () => {
 
 export const loadVillage = () => dispatch => {
   dispatch({ type: LOAD_VILLAGE });
-  dispatch({ type: LOAD_SUCCESS, payload: {name: 'test', age: 42, height: 2019}});
+  axios
+    .get('http://localhost:3333/smurfs')
+    .then(res => {
+      dispatch({ type: LOAD_SUCCESS, payload: res.data});
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({type: LOAD_FAIL});
+    });
 };

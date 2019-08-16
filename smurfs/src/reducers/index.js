@@ -25,7 +25,7 @@ export default (state = initState, action) => {
     case LOAD_SUCCESS:
       alert(LOAD_SUCCESS)
       return {
-        village: [...state.village, action.payload],
+        village: action.payload,
         status: STATIC
       };
     case LOAD_FAIL:
