@@ -1,48 +1,21 @@
-const initState = {};
+//states
+export const STATIC = 'STATIC';
+export const ADDING = 'ADDING';
+export const ADD_ABORT = 'ADD_ABORT';
+export const LOADING = 'LOADING';
+export const LOAD_ABORT = 'LOAD_ABORT';
 
-export const commands = {
-  ADD_SMURF: 'ADD_SMURF',
-  ADD_FAIL: 'ADD_FAIL',
-  LOAD_VILLAGE: 'LOAD_VILLAGE',
-  LOAD_SUCCESS: 'LOAD_SUCCESS',
-  LOAD_FAIL: 'LOAD_FAIL'
+//transitions
+export const ADD_SMURF = 'ADD_SMURF';
+export const ADD_FAIL = 'ADD_FAIL';
+export const LOAD_VILLAGE = 'LOAD_VILLAGE';
+export const LOAD_SUCCESS = 'LOAD_SUCCESS';
+export const LOAD_FAIL = 'LOAD_FAIL';
+
+const initState = {
+  village: [],
+  status: STATIC
 };
-
-const states = {
-  STATIC: 'STATIC',
-  ADDING: 'ADDING',
-  ADD_ABORT: 'ADD_ABORT',
-  LOADING: 'LOADING',
-  LOAD_ABORT: 'LOAD_ABORT'
-};
-
-export const [
-  ADD_SMURF,
-  ADD_FAIL,
-  LOAD_VILLAGE,
-  LOAD_SUCCESS,
-  LOAD_FAIL
- ] = [
-  'ADD_SMURF',
-  'ADD_FAIL',
-  'LOAD_VILLAGE',
-  'LOAD_SUCCESS',
-  'LOAD_FAIL'
- ];
-
-const [
-  STATIC,
-  ADDING,
-  ADD_ABORT,
-  LOADING,
-  LOAD_ABORT
-] = [
-  'STATIC',
-  'ADDING',
-  'ADD_ABORT',
-  'LOADING',
-  'LOAD_ABORT'
-];
 
 export default (state = initState, action) => {
   switch(action.type) {

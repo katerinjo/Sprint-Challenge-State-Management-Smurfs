@@ -1,9 +1,25 @@
-import React from "react";
+import React from 'react';
 
-export default props => {
+import { connect } from 'react-redux';
+
+import { LOAD_ABORT } from '../reducers';
+
+const Village = ({ members, onFire }) => {
   return (
-    <div>
-      village
+    <div className={onFire ? 'fire' : ''}>
+      {members.map(({name, age, height}) => (
+        <p>{name}: {age}yo {height}cm</p>
+      ))}
     </div>
   );
+};
+
+const mapStateToProps = state => {
+  return {
+    members: state.village,
+    onFire: state.status === LOAD_ABORT
+  }
 }
+
+
+export default connect(mapStateToProps, {})(Village)
