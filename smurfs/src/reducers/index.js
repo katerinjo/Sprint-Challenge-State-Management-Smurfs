@@ -1,3 +1,5 @@
+import { commands } from '../actions';
+
 const initState = {};
 
 export default (state = initState, action) => {
