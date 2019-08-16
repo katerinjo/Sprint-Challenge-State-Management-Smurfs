@@ -20,11 +20,12 @@ const initState = {
 export default (state = initState, action) => {
   switch(action.type) {
     case LOAD_VILLAGE:
+      alert(LOAD_VILLAGE)
       return {...state, status: LOADING};
     case LOAD_SUCCESS:
       alert(LOAD_SUCCESS)
       return {
-        village: state.village + action.payload,
+        village: [...state.village, action.payload],
         status: STATIC
       };
     case LOAD_FAIL:
