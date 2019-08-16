@@ -1,6 +1,4 @@
-export const commands = {
-  '!!': '!!'
-};
+import { commands } from '../reducers';
 
 export const doSomething = () => {
   return {
